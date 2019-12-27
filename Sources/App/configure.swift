@@ -1,9 +1,19 @@
 import FluentSQLite
 import FluentMySQL
 import Vapor
+import DotEnv
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
+    // Setup environment variables
+    let env = DotEnv(withFile: ".env")
+    
+    // get DB vars
+    let db_hostname = env.get("DB_HOSTNAME") ?? "localhost"
+    let db_username = env.get("DB_USERNAME") ?? "user"
+    let db_password = env.get("DB_PASSWORD") ?? "secret"
+    let db_database = env.get("DB_DATABASE") ?? "database"
+    
     // Register providers first
     // try services.register(FluentSQLiteProvider())
     try services.register(FluentMySQLProvider())
@@ -28,10 +38,10 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     // Register MySQL Database
     let mysqlConfig = MySQLDatabaseConfig(
-        hostname: Environment.get("DB_HOSTNAME")!,
-        username: Environment.get("DB_USERNAME")!,
-        password: Environment.get("DB_PASSWORD")!,
-        database: Environment.get("DB_DATABASE")!
+        hostname: db_hostname,
+        username: db_username,
+        password: db_password,
+        database: db_database
     )
     
     let mysqlDB = MySQLDatabase(config: mysqlConfig)
