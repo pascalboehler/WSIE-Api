@@ -6,7 +6,7 @@ final class TodoController {
     func index(_ req: Request) throws -> Future<[Todo]> {
         return Todo.query(on: req).all()
     }
-
+    
     /// Saves a decoded `Todo` to the database.
     func create(_ req: Request) throws -> Future<Todo> {
         return try req.content.decode(Todo.self).flatMap { todo in

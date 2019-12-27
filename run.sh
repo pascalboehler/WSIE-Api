@@ -1,0 +1,2 @@
+vapor build
+vapor run
