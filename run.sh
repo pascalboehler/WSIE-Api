@@ -1,2 +1,0 @@
-vapor build
-vapor run

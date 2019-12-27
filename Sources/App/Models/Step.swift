@@ -7,9 +7,9 @@
 
 import Foundation
 import Vapor
-import FluentSQLite
+import FluentMySQL
 
-final class Step: SQLiteModel {
+final class Step: MySQLModel {
     var id: Int?
     var description: String
     var image: String // change later to image + if none no image is set
