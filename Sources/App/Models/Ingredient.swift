@@ -8,7 +8,9 @@
 import Foundation
 import Vapor
 import FluentMySQL
+//import FluentSQLite
 
+//final class Ingredient: SQLiteModel {
 final class Ingredient: MySQLModel {
     var id: Int?
     var name: String

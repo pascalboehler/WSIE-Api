@@ -52,8 +52,15 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     // Configure migrations
     var migrations = MigrationConfig()
+    // MySQL
     migrations.add(model: Step.self, database: .mysql)
     migrations.add(model: Ingredient.self, database: .mysql)
     migrations.add(model: Recipe.self, database: .mysql)
+    // SQLite
+    /*
+    migrations.add(model: Step.self, database: .sqlite)
+    migrations.add(model: Ingredient.self, database: .sqlite)
+    migrations.add(model: Recipe.self, database: .sqlite)
+    */
     services.register(migrations)
 }
