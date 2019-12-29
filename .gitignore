@@ -9,4 +9,5 @@ db.sqlite
 *.db
 *.json
 .env
+*.env
 run.sh

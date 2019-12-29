@@ -1,0 +1,39 @@
+version: "3"
+services:
+    db: # db ip 172.25.0.101
+        image: mysql:5.7
+        #environment:
+        #    MYSQL_ROOT_PASSWORD: root
+        #    MYSQL_USER: vapor
+        #    MYSQL_PASSWORD: test
+        #    MYSQL_DATABASE: test
+        env_file:
+          - database.env
+
+        networks:
+          - internal
+
+        restart: always
+
+    api:
+        image: wsieapi:latest
+        depends_on:
+          - db
+        ports:
+            - 8080:8080
+            - 80:80
+
+        networks:
+          - internal
+
+        links:
+          - "db:database"
+
+    # traefik: needs to be done
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.50.0.0/24
