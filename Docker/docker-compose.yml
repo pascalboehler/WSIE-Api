@@ -16,7 +16,7 @@ services:
         restart: always
 
     api:
-        image: wsieapi:latest
+        image: docker.pkg.github.com/pascalboehler/wsie-api/wsieapi:latest
         depends_on:
           - db
         ports:
