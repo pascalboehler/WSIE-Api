@@ -23,8 +23,8 @@ services:
         #    - 8080:8080
         #    - 80:80
 
-        networks:
-          - internal
+        #networks:
+        #  - internal
 
         links:
           - "db:database"
@@ -49,12 +49,12 @@ services:
         ports:
           - 80:80
           - 443:443
-        networks:
-          - internal
+        #networks:
+        #  - internal
 
-networks:
-  internal:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.50.0.0/24
+#networks:
+#  internal:
+#    driver: bridge
+#    ipam:
+#      config:
+#        - subnet: 172.50.0.0/24
