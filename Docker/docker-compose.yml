@@ -10,8 +10,8 @@ services:
         env_file:
           - database.env
 
-        networks:
-          - internal
+        #networks:
+        #  - internal
 
         restart: always
 
@@ -30,27 +30,32 @@ services:
           - "db:database"
 
         labels:
-          - traefik.http.routers.api.rule=Host('wsiedevapi.uksouth.cloudapp.azure.com')
-          - traefik.http.services.api.loadBalancer.stickiness
+          - traefik.http.routers.api.rule=Host('localhost')
+          - traefik.port = 80
+          - traefik.enabled = true  
+          #- traefik.http.services.api.loadBalancer.stickiness
 
 
     grafana:
-      image: grafana:latest
-      networks:
-        - internal
-      labels:
-        - traefik.http.routers.api.rule=Host('wsiedevapi.uksouth.cloudapp.azure.com') && PathPrefix('/grafana')
-
-    traefik:
-        image: traefik:v2.0
-        command: --providers.docker
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock:rw
-        ports:
-          - 80:80
-          - 443:443
+        image: grafana/grafana:latest
         #networks:
         #  - internal
+        #labels:
+        #  - traefik.http.routers.api.rule=Host('wsiedevapi.uksouth.cloudapp.azure.com') && PathPrefix("/grafana")
+
+    reverse-proxy:
+      # The official v2.0 Traefik docker image
+      image: traefik:v2.0
+      # Enables the web UI and tells Traefik to listen to docker
+      command: --api --providers.docker
+      ports:
+        # The HTTP port
+        - "80:80"
+        # The Web UI (enabled by --api.insecure=true)
+        - "8080:8080"
+      volumes:
+        # So that Traefik can listen to the Docker events
+        - /var/run/docker.sock:/var/run/docker.sock
 
 #networks:
 #  internal:

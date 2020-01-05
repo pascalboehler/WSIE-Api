@@ -18,4 +18,10 @@ public func routes(_ router: Router) throws {
     router.get("recipe/uid", String.parameter, use: recipeController.getAllUserRecipes)
     router.post("recipe", use: recipeController.create)
     router.delete("recipe", Recipe.parameter, use: recipeController.delete)
+    
+    // ShoppingList:
+    let shoppingListItemController = ShoppingListController()
+    router.get("shoppingList/uid", String.parameter, use: shoppingListItemController.getAllUserListItems)
+    router.post("shoppingList", use: shoppingListItemController.create)
+    router.delete("shoppingList", use: shoppingListItemController.delete)
 }
