@@ -14,12 +14,14 @@ import FluentMySQL
 final class Ingredient: MySQLModel {
     var id: Int?
     var name: String
-    var amount: String
+    var amount: Int
+    var unit: String
     
-    init (id: Int? = nil, name: String, amount: String) {
+    init (id: Int? = nil, name: String, amount: Int, unit: String) {
         self.id = id
         self.name = name
         self.amount = amount
+        self.unit = unit
     }
 }
 
