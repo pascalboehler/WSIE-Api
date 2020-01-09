@@ -33,7 +33,7 @@ final class RecipeController {
 
     /// Deletes a parameterized `Todo`.
     func delete(_ req: Request) throws -> Future<HTTPStatus> {
-        return try req.parameters.next(Recipe.self).flatMap { recipe in
+        return try req.content.decode(Recipe.self).flatMap { recipe in
             return recipe.delete(on: req)
         }.transform(to: .ok)
     }

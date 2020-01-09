@@ -56,6 +56,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     migrations.add(model: Step.self, database: .mysql)
     migrations.add(model: Ingredient.self, database: .mysql)
     migrations.add(model: Recipe.self, database: .mysql)
+    migrations.add(model: ShoppingListItem.self, database: .mysql)
     // SQLite
     /*
     migrations.add(model: Step.self, database: .sqlite)
