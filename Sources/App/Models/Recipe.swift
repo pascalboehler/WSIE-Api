@@ -21,6 +21,7 @@ final class Recipe: MySQLModel { // MySQL
     var shortDescription: String
     var uid: String
     var imageName: String = "NoPhoto"
+    var imageData: Data
     var personAmount: Int = 4
     var sharedWith: [String] // for future see kanban for information
     var language: String = "de"
@@ -35,7 +36,7 @@ final class Recipe: MySQLModel { // MySQL
         case savoury = "Savoury"
     }
     
-    init(id: Int?, title: String, timeNeeded: String, isFavourite: Bool, ingredients: [Ingredient], steps: [Step], shortDescription: String, uid: String, imageName: String, personAmount: Int, sharedWith: [String], language: String, isPublic: Bool) {
+    init(id: Int?, title: String, timeNeeded: String, isFavourite: Bool, ingredients: [Ingredient], steps: [Step], shortDescription: String, uid: String, imageName: String, personAmount: Int, sharedWith: [String], language: String, isPublic: Bool, imageData: Data) {
         self.id = id
         self.title = title
         self.timeNeeded = timeNeeded
@@ -49,6 +50,7 @@ final class Recipe: MySQLModel { // MySQL
         self.sharedWith = sharedWith
         self.language = language
         self.isPublic = isPublic
+        self.imageData = imageData
     }
 
 }

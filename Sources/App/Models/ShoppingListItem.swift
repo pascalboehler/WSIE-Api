@@ -18,13 +18,6 @@ struct ShoppingListItem: MySQLModel {
     var uid: String
 }
 
-extension ShoppingListItem: Migration {
-    static func prepare(on connection: MySQLConnection) -> EventLoopFuture<Void> {
-        return MySQLDatabase.update(ShoppingListItem.self, on: connection) { builder in
-            builder.field(for: \.itemUnit)
-            builder.field(for: \.itemAmount)
-        }
-    }
-}
+extension ShoppingListItem: Migration { }
 extension ShoppingListItem: Parameter { }
 extension ShoppingListItem: Content { }
