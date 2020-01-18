@@ -35,7 +35,7 @@ services:
         restart: always
 
         labels:
-          - traefik.http.routers.api.rule=Host('wsiedevapi.uksouth.cloudapp.azure.com') # change to server dns name
+          - traefik.http.routers.api.rule=Host("wsiedevapi.uksouth.cloudapp.azure.com") # change to server dns name
           #- traefik.http.routers.api.rule=Host("localhost")
           #- traefik.http.services.api.loadBalancer.stickiness
 
