@@ -45,7 +45,7 @@ services:
         #networks:
         #  - internal
         environment:
-          - GF_SERVER_ROOT_URL=wsiedevapi.uksouth.cloudapp.azure.com/grafana
+          - GF_SERVER_ROOT_URL=http://wsiedevapi.uksouth.cloudapp.azure.com/grafana
         restart: always
         labels:
           - traefik.http.routers.grafana.rule=Host("wsiedevapi.uksouth.cloudapp.azure.com") && PathPrefix("/grafana")
