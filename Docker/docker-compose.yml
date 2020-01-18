@@ -73,7 +73,7 @@ services:
         - countly_mongo_db:/bitnami
 
       environment:
-        - MONGODB_USERNAME=root
+        - MONGODB_USERNAME=test
         - MONGODB_PASSWORD=secret
         - MONGODB_DATABASE=countly
 
@@ -84,13 +84,13 @@ services:
         - COUNTLY_PLUGINS=mobile,web,desktop,plugins,density,locale,browser,sources,views,enterpriseinfo,logger,systemlogs,errorlogs,populator,reports,crashes,push,star-rating,slipping-away-users,compare,server-stats,dbviewer,assistant,plugin-upload,times-of-day,compliance-hub,video-intelligence-monetization,alerts,onboarding"
         # Enterprise Edition: - COUNTLY_PLUGINS=mobile,web,desktop,plugins,density,locale,browser,sources,views,drill,funnels,concurrent_users,retention_segments,revenue,logger,systemlogs,errorlogs,populator,reports,crashes,push,block,restrict,users,geo,star-rating,slipping-away-users,compare,server-stats,dashboards,assistant,flows,dbviewer,cohorts,crash_symbolication,crashes-jira,groups,white-labeling,plugin-upload,alerts,times-of-day,compliance-hub,onboarding,remote-config,formulas,ab-testing
         - COUNTLY_CONFIG_API_MONGODB_HOST=mongodb
-        - COUNTLY_CONFIG_API_MONGODB_USERNAME=${MONGODB_USERNAME}
-        - COUNTLY_CONFIG_API_MONGODB_PASSWORD=${MONGODB_PASSWORD}
-        - COUNTLY_CONFIG_API_MONGODB_DB=${MONGODB_DATABASE}
+        - COUNTLY_CONFIG_API_MONGODB_USERNAME=test
+        - COUNTLY_CONFIG_API_MONGODB_PASSWORD=secret
+        - COUNTLY_CONFIG_API_MONGODB_DB=countly
         - COUNTLY_CONFIG_FRONTEND_MONGODB_HOST=mongodb
-        - COUNTLY_CONFIG_FRONTEND_MONGODB_USERNAME=${MONGODB_USERNAME}
-        - COUNTLY_CONFIG_FRONTEND_MONGODB_PASSWORD=${MONGODB_PASSWORD}
-        - COUNTLY_CONFIG_FRONTEND_MONGODB_DB=${MONGODB_DATABASE}
+        - COUNTLY_CONFIG_FRONTEND_MONGODB_USERNAME=test
+        - COUNTLY_CONFIG_FRONTEND_MONGODB_PASSWORD=secret
+        - COUNTLY_CONFIG_FRONTEND_MONGODB_DB=countly
       deploy:
         restart_policy:
           condition: on-failure
@@ -98,7 +98,7 @@ services:
           max_attempts: 3
           window: 120s
       depends_on:
-        - mongodb
+        - countly_mongo_db
 
       labels:
         - traefik.http.countly_api.frontend.rule = Host("wsiedevapi.uksouth.cloudapp.azure.com") && PathPrefix("/countly_api")
@@ -110,15 +110,15 @@ services:
         - COUNTLY_PLUGINS=mobile,web,desktop,plugins,density,locale,browser,sources,views,enterpriseinfo,logger,systemlogs,errorlogs,populator,reports,crashes,push,star-rating,slipping-away-users,compare,server-stats,dbviewer,assistant,plugin-upload,times-of-day,compliance-hub,video-intelligence-monetization,alerts,onboarding"
         # Enterprise Edition: - COUNTLY_PLUGINS=mobile,web,desktop,plugins,density,locale,browser,sources,views,drill,funnels,concurrent_users,retention_segments,revenue,logger,systemlogs,errorlogs,populator,reports,crashes,push,block,restrict,users,geo,star-rating,slipping-away-users,compare,server-stats,dashboards,assistant,flows,dbviewer,cohorts,crash_symbolication,crashes-jira,groups,white-labeling,plugin-upload,alerts,times-of-day,compliance-hub,onboarding,remote-config,formulas,ab-testing
         - COUNTLY_CONFIG_API_MONGODB_HOST=mongodb
-        - COUNTLY_CONFIG_API_MONGODB_USERNAME=${MONGODB_USERNAME}
-        - COUNTLY_CONFIG_API_MONGODB_PASSWORD=${MONGODB_PASSWORD}
+        - COUNTLY_CONFIG_API_MONGODB_USERNAME=test
+        - COUNTLY_CONFIG_API_MONGODB_PASSWORD=secret
         - COUNTLY_CONFIG_FRONTEND_MONGODB_HOST=mongodb
-        - COUNTLY_CONFIG_FRONTEND_MONGODB_USERNAME=${MONGODB_USERNAME}
-        - COUNTLY_CONFIG_FRONTEND_MONGODB_PASSWORD=${MONGODB_PASSWORD}
-        - COUNTLY_CONFIG_FRONTEND_MONGODB_DB=${MONGODB_DATABASE}
+        - COUNTLY_CONFIG_FRONTEND_MONGODB_USERNAME=test
+        - COUNTLY_CONFIG_FRONTEND_MONGODB_PASSWORD=secret
+        - COUNTLY_CONFIG_FRONTEND_MONGODB_DB=countly
 
       depends_on:
-        - mongodb
+        - countly_mongo_db
       deploy:
         # There is usually no need in multiple frontends, so throttling down resources for it
         mode: global
