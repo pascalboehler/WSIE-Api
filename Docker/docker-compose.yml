@@ -85,4 +85,4 @@ services:
 #        - subnet: 172.50.0.0/24
 
 volumes:
-  - db_data: { }
+  db_data: { }
