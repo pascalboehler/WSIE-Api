@@ -38,6 +38,7 @@ services:
           - traefik.http.routers.api.rule=Host("wsiedevapi.uksouth.cloudapp.azure.com") # change to server dns name
           #- traefik.http.routers.api.rule=Host("localhost")
           #- traefik.http.services.api.loadBalancer.stickiness
+          - traefik.http.services.api.loadbalancer.server.port=80
 
 
     grafana:
@@ -55,7 +56,7 @@ services:
       # The official v2.0 Traefik docker image
       image: traefik:v2.0
       # Enables the web UI and tells Traefik to listen to docker
-      command: --api --providers.docker
+      command: --api --providers.docker --providers.docker.endpoint=http://wsiedevapi.uksouth.cloudapp.azure.com:80
       restart: always
       ports:
         # The HTTP port
