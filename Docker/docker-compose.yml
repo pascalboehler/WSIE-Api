@@ -11,7 +11,7 @@ services:
           - database.env
 
         volumes:
-          - db_data
+          - db_data:/var/lib/mysql
 
         #networks:
         #  - internal
@@ -67,16 +67,6 @@ services:
       volumes:
         # So that Traefik can listen to the Docker events docker socket is linked to service
         - /var/run/docker.sock:/var/run/docker.sock
-
-    portainer:
-      image: portainer/portainer
-      restart: always
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-        - portainer_data:/data
-      labels:
-        - traefik.enable=true
-        - traefik.http.routers.portainer.rule=Host("localhost") && PathPrefix("/portainer")
 
 volumes:
   db_data: { }
