@@ -12,16 +12,18 @@ public func routes(_ router: Router) throws {
         return "Hello, world!"
     }
     
+    let routePrefix = "api/v1/"
+    
     // Recipes:
     let recipeController = RecipeController()
-    router.get("recipe", use: recipeController.getAllPublic)
-    router.get("recipe/uid", String.parameter, use: recipeController.getAllUserRecipes)
-    router.post("recipe", use: recipeController.create)
-    router.delete("recipe", use: recipeController.delete)
+    router.get("\(routePrefix)recipe", use: recipeController.getAllPublic)
+    router.get("\(routePrefix)recipe/uid", String.parameter, use: recipeController.getAllUserRecipes)
+    router.post("\(routePrefix)recipe", use: recipeController.create)
+    router.delete("\(routePrefix)recipe", use: recipeController.delete)
     
     // ShoppingList:
     let shoppingListItemController = ShoppingListController()
-    router.get("shoppingList/uid", String.parameter, use: shoppingListItemController.getAllUserListItems)
-    router.post("shoppingList", use: shoppingListItemController.create)
-    router.delete("shoppingList", use: shoppingListItemController.delete)
+    router.get("\(routePrefix)shoppingList/uid", String.parameter, use: shoppingListItemController.getAllUserListItems)
+    router.post("\(routePrefix)shoppingList", use: shoppingListItemController.create)
+    router.delete("\(routePrefix)shoppingList", use: shoppingListItemController.delete)
 }
