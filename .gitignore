@@ -11,3 +11,4 @@ db.sqlite
 .env
 *.env
 run.sh
+Docker/acme.json
