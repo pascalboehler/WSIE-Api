@@ -6,3 +6,5 @@ The backend if WSIE-iOS made completely with Vapor in Swift
 2. Insert secure database credentials on both files
 3. build docker image with command docker build -t wsieapi -f web.Dockerfile .
 4. run docker-compose up in /Docker
+
+**Notice: I wont work as frequent as before on this application, but feel free to contribute or fork the repository so that WSIE can stay alive!**
